@@ -4,6 +4,7 @@
 
 	window.onload = function() {		
 	var canvas = document.querySelector('#paint');
+ 	console.log('window onload event called');
 	
 	var ctx = canvas.getContext('2d');
 	
@@ -32,6 +33,7 @@
 	tmp_canvas.addEventListener('mousemove', function(e) {
 		mouse.x = typeof e.offsetX !== 'undefined' ? e.offsetX : e.layerX;
 		mouse.y = typeof e.offsetY !== 'undefined' ? e.offsetY : e.layerY;
+		console.log('mouse capturing activity here...');
 	}, false);
 	
 	
@@ -47,8 +49,11 @@
 		
 		mouse.x = typeof e.offsetX !== 'undefined' ? e.offsetX : e.layerX;
 		mouse.y = typeof e.offsetY !== 'undefined' ? e.offsetY : e.layerY;
+
 		
 		ppts.push({x: mouse.x, y: mouse.y});
+	
+		console.log('mousedown :'+ppts);
 		
 		onPaint();
 	}, false);
@@ -66,9 +71,10 @@
 	}, false);
 	
 	var onPaint = function() {
-		
+	         console.log('onPaint called x:'+mouse.x+', y:'+mouse.y);	
 		// Saving all the points in an array
 		ppts.push({x: mouse.x, y: mouse.y});
+
 		
 		if (ppts.length < 3) {
 			var b = ppts[0];
